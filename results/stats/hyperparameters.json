@@ -1,0 +1,36 @@
+{
+  "Perceptron": {
+    "max_iter": 1000,
+    "random_state": 42,
+    "algorithm": "Perceptron Simples",
+    "type": "Linear Classifier"
+  },
+  "ADALINE": {
+    "learning_rate": 0.01,
+    "max_iter": 1000,
+    "tolerance": 1e-06,
+    "random_state": 42,
+    "algorithm": "ADALINE",
+    "type": "Linear Adaptive Classifier"
+  },
+  "MLP": {
+    "hidden_layer_sizes": [
+      10
+    ],
+    "activation": "relu",
+    "solver": "adam",
+    "learning_rate_init": 0.01,
+    "max_iter": 1000,
+    "random_state": 42,
+    "algorithm": "MLP",
+    "type": "Non-linear Multi-layer Classifier"
+  },
+  "RBF": {
+    "n_centers": 10,
+    "sigma": null,
+    "sigma_computed": 0.42939906838209124,
+    "random_state": 42,
+    "algorithm": "RBF Network",
+    "type": "Radial Basis Function Network"
+  }
+}

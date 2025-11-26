@@ -16,13 +16,13 @@ trabalho-redes-neurais/
 │   ├── extreme_analysis.py       # Análise de casos extremos
 │   └── results/                  # Resultados da etapa 1
 │       ├── confusion_matrices/   # Matrizes de confusão (42 arquivos)
-│       ├── plots/               # Gráficos e visualizações (3 arquivos)
+│       ├── plots/               # Gráficos e visualizações (4 arquivos)
 │       └── stats/               # Estatísticas em Excel/JSON (6 arquivos)
 │
 ├── etapa2_series_temporais/       # SEGUNDA ETAPA - Séries Temporais
 │   ├── lstm_furnas.py            # Arquivo principal da etapa 2
 │   ├── furnas.csv                # Dataset vazão Furnas (60 anos)
-│   ├── plots/                    # Visualizações da etapa 2
+│   ├── plots/                    # Visualizações da etapa 2 (3 arquivos)
 │   ├── models/                   # Modelos LSTM salvos
 │   └── results/                  # Resultados da etapa 2
 │
@@ -38,45 +38,31 @@ trabalho-redes-neurais/
 
 Este projeto implementa e analisa diferentes tipos de redes neurais para classificação não linear bidimensional usando o dataset `spiral_d.csv`. O projeto é parte da primeira etapa de um trabalho acadêmico sobre Machine Learning e Redes Neurais.
 
-##  Objetivos
+### **Objetivos**
 
 1. **Classificação Não Linear Bidimensional** usando diferentes arquiteturas de redes neurais
 2. **Análise de Underfitting/Overfitting** com diferentes topologias
 3. **Validação Estatística** através de 500 simulações com divisão aleatória dos dados
 4. **Comparação de Desempenho** entre diferentes algoritmos
 
-## Estrutura do Projeto
+### **Como Executar a Etapa 1**
 
-```
-RedesNeurais/
-├── app.py                    # Arquivo principal para executar o projeto
-├── spiral_d.csv             # Dataset com dados em espiral (2 features, 2 classes)
-├── furnas.csv               # Dataset para segunda etapa (séries temporais)
-├── utils.py                 # Funções auxiliares (métricas, visualizações, etc.)
-├── perceptron_simple.py     # Implementação do Perceptron Simples
-├── adaline.py               # Implementação do ADALINE
-├── mlp.py                   # Implementação do MLP (Multi-Layer Perceptron)
-├── rbf.py                   # Implementação da RBF (Radial Basis Function)
-├── venv/                    # Ambiente virtual Python
-└── results/                 # Pasta com todos os resultados gerados
-    ├── confusion_matrices/  # Matrizes de confusão
-    ├── plots/              # Gráficos e visualizações
-    └── stats/              # Tabelas estatísticas e métricas
-```
-
-## Como Executar
-
-### 1. Ativar o ambiente virtual
+#### 1. Ativar o ambiente virtual
 ```powershell
 .\venv\Scripts\Activate.ps1
 ```
 
-### 2. Executar o projeto completo
+#### 2. Navegar para a pasta da etapa 1
+```powershell
+cd etapa1_classificacao
+```
+
+#### 3. Executar o projeto completo
 ```powershell
 python app.py
 ```
 
-### 3. Executar módulos individuais (para testes)
+#### 4. Executar módulos individuais (para testes)
 ```powershell
 # Testar Perceptron Simples
 python perceptron_simple.py
@@ -91,19 +77,19 @@ python mlp.py
 python rbf.py
 ```
 
-##  Modelos Implementados
+### **Modelos Implementados**
 
-### 1. **Perceptron Simples** (`perceptron_simple.py`)
+#### 1. **Perceptron Simples** (`perceptron_simple.py`)
 - **Algoritmo**: Perceptron clássico de Rosenblatt
 - **Características**: Classificador linear, adequado para dados linearmente separáveis
 - **Hiperparâmetros**: `max_iter=1000`, `random_state=42`
 
-### 2. **ADALINE** (`adaline.py`)
+#### 2. **ADALINE** (`adaline.py`)
 - **Algoritmo**: Adaptive Linear Neuron
 - **Características**: Utiliza gradiente descendente e função de custo MSE
 - **Hiperparâmetros**: `learning_rate=0.01`, `max_iter=1000`, `tolerance=1e-6`
 
-### 3. **MLP** (`mlp.py`)
+#### 3. **MLP** (`mlp.py`)
 - **Algoritmo**: Multi-Layer Perceptron com backpropagation
 - **Características**: Múltiplas camadas, funções de ativação não-lineares
 - **Configurações**:
@@ -111,7 +97,7 @@ python rbf.py
   - **Balanced**: `(10,)` neurônios, 1000 iterações  
   - **Overfitted**: `(100,50,25)` neurônios, 2000 iterações
 
-### 4. **RBF** (`rbf.py`)
+#### 4. **RBF** (`rbf.py`)
 - **Algoritmo**: Radial Basis Function Network
 - **Características**: Funções gaussianas, centros determinados por K-means
 - **Configurações**:
@@ -119,9 +105,7 @@ python rbf.py
   - **Balanced**: 10 centros, σ=auto
   - **Overfitted**: 50 centros, σ=0.1
 
-## Dataset
-
-### `spiral_d.csv`
+### **Dataset - `spiral_d.csv`**
 - **Formato**: CSV sem cabeçalho
 - **Estrutura**: 3 colunas (X1, X2, Class)
 - **Amostras**: 1.400 registros
@@ -129,63 +113,121 @@ python rbf.py
 - **Distribuição**: 1000 amostras da classe 1.0, 400 da classe -1.0
 - **Características**: Dados em formato espiral (não linearmente separável)
 
-##  Análises Realizadas
+---
 
-### 1. **Visualização dos Dados**
+## 📈 **ETAPA 2: PREVISÃO DE SÉRIES TEMPORAIS**
+
+### **Descrição do Projeto**
+
+Esta etapa implementa redes LSTM (Long Short-Term Memory) para previsão de séries temporais usando dados históricos de vazão da Usina Hidrelétrica de Furnas. O objetivo é prever valores futuros baseado em padrões temporais dos últimos 60 anos.
+
+### **Objetivos**
+
+1. **Análise Exploratória** de dados de séries temporais hidrológicas
+2. **Implementação de LSTM** para previsão de vazão hidrelétrica
+3. **Avaliação de Performance** usando métricas específicas para regressão
+4. **Visualização de Resultados** comparando predições vs valores reais
+
+### **Como Executar a Etapa 2**
+
+#### 1. Ativar o ambiente virtual (se não estiver ativo)
+```powershell
+.\venv\Scripts\Activate.ps1
+```
+
+#### 2. Navegar para a pasta da etapa 2
+```powershell
+cd etapa2_series_temporais
+```
+
+#### 3. Executar a análise LSTM
+```powershell
+python lstm_furnas.py
+```
+
+### **Modelo Implementado**
+
+#### **LSTM** (`lstm_furnas.py`)
+- **Arquitetura**: 50 neurônios LSTM → Dropout(0.2) → Dense(12)
+- **Configuração**: Janela de 12 meses para predizer próximos 12 meses
+- **Divisão**: 48 anos para treino + 12 anos para teste
+- **Otimizador**: Adam com early stopping
+
+### **Dataset - `furnas.csv`**
+- **Formato**: CSV com dados mensais
+- **Período**: 60 anos (708 observações mensais)
+- **Variável**: Vazão hidrelétrica (m³/s)
+- **Características**: Sazonalidade clara com variabilidade inter-anual
+
+---
+
+## 📊 **ANÁLISES REALIZADAS**
+
+### **Etapa 1:**
+
+#### 1. **Visualização dos Dados**
 - Gráfico de espalhamento dos dados originais e normalizados
 - Coloração por classe para visualizar padrão não-linear
 
-### 2. **Treinamento dos Modelos**
+#### 2. **Treinamento dos Modelos**
 - Justificativa dos hiperparâmetros escolhidos
 - Métricas de desempenho: Acurácia, Precisão, Recall, F1-Score, Especificidade
 - Matrizes de confusão para cada modelo
 
-### 3. **Análise de Underfitting/Overfitting**
+#### 3. **Análise de Underfitting/Overfitting**
 - Diferentes topologias para MLP e RBF
 - Comparação entre acurácia de treino vs teste
 - Identificação de casos de sub/superdimensionamento
 
-### 4. **Validação Estatística (500 Simulações)**
-- Divisão aleatória: 80% treino, 20% teste
+#### 4. **Validação Estatística (500 Simulações)**
+- Divisão aleatória: 70% treino, 30% teste
 - Cálculo de estatísticas: média, desvio-padrão, maior/menor valor
 - Análise de casos extremos (melhor e pior performance)
 
-### 5. **Visualizações Geradas**
+#### 5. **Visualizações Geradas**
 - Boxplots comparativos entre modelos
 - Matrizes de confusão múltiplas
-- Curvas de aprendizado (para MLP)
-- Visualização das funções RBF
+- Curvas de aprendizado para casos extremos
 
-##  Métricas de Avaliação
+### **Etapa 2:**
 
-Todas as métricas são calculadas para cada modelo:
+#### 1. **Análise Exploratória Temporal**
+- Série temporal completa (60 anos de dados)
+- Identificação de padrões sazonais
+- Distribuições mensais via boxplots
+- Análise de tendências de longo prazo
 
+#### 2. **Modelagem LSTM**
+- Preparação de dados temporais com janela deslizante
+- Normalização dos dados para o treinamento
+- Implementação de arquitetura LSTM com dropout
+- Early stopping para evitar overfitting
+
+#### 3. **Avaliação e Visualização**
+- Métricas de regressão: MAE, RMSE, R²
+- Comparação visual entre predições e valores reais
+- Análise de correlação e dispersão dos resultados
+
+---
+
+
+## 📏 **MÉTRICAS DE AVALIAÇÃO**
+
+### **Etapa 1 - Classificação:**
 - **Acurácia**: (TP + TN) / (TP + TN + FP + FN)
 - **Precisão**: TP / (TP + FP)  
 - **Recall (Sensibilidade)**: TP / (TP + FN)
 - **Especificidade**: TN / (TN + FP)
 - **F1-Score**: 2 × (Precisão × Recall) / (Precisão + Recall)
 
-## Arquivos Gerados
+### **Etapa 2 - Regressão:**
+- **MAE**: Mean Absolute Error (Erro Absoluto Médio)
+- **RMSE**: Root Mean Square Error (Raiz do Erro Quadrático Médio)
+- **R²**: Coeficiente de Determinação
 
-Após a execução, os seguintes arquivos são gerados em `results/`:
+---
 
-### Visualizações (`plots/`)
-- `data_visualization.png` - Visualização inicial dos dados
-- `performance_comparison_boxplots.png` - Comparação de desempenho
-- `adaline_cost_curve.png` - Curva de custo do ADALINE (se executado individualmente)
-- `mlp_learning_curve.png` - Curva de aprendizado do MLP
-
-### Matrizes de Confusão (`confusion_matrices/`)
-- `basic_models_comparison.png` - Comparação dos modelos básicos
-- `underfitting_overfitting_comparison.png` - Análise de under/overfitting
-
-### Estatísticas (`stats/`)
-- `simulation_statistics.xlsx` - Planilha com estatísticas das 500 simulações
-- `hyperparameters.json` - Hiperparâmetros utilizados
-- `*_results.json` - Resultados individuais de cada modelo
-
-## 🔧 Dependências
+## 🔧 **DEPENDÊNCIAS**
 
 O projeto utiliza as seguintes bibliotecas Python:
 
@@ -195,24 +237,53 @@ numpy>=1.24.0
 matplotlib>=3.7.0
 seaborn>=0.12.0
 scikit-learn>=1.3.0
+tensorflow>=2.20.0     # Para LSTM (Etapa 2)
+openpyxl>=3.0.0        # Para arquivos Excel
 ```
 
 Todas as dependências são instaladas automaticamente no ambiente virtual.
 
-## 📝 Observações Importantes
+---
+
+## 📝 **OBSERVAÇÕES IMPORTANTES**
 
 1. **Ambiente Virtual**: Sempre execute dentro do ambiente virtual `venv`
-2. **Tempo de Execução**: A análise completa (500 simulações) pode levar alguns minutos
-3. **Teste Rápido**: Para teste, altere `n_simulations=100` no `app.py`
+2. **Tempo de Execução**: A análise completa da Etapa 1 (500 simulações) pode levar alguns minutos
+3. **Teste Rápido**: Para teste da Etapa 1, altere `n_simulations=100` no `app.py`
 4. **Reprodutibilidade**: Seeds aleatórias garantem resultados reproduzíveis
-5. **Logs**: O programa fornece logs detalhados durante a execução
+5. **Logs**: Ambos os programas fornecem logs detalhados durante a execução
 
-##  Próximos Passos
+---
 
-Esta é a **Primeira Etapa** do projeto. A segunda etapa incluirá:
-- **Previsão de Séries Temporais** usando `furnas.csv`
-- Implementação de redes neurais para dados temporais
-- Análise de tendências e sazonalidade
+## ✅ **STATUS DO PROJETO**
 
+- [x] **Etapa 1** - Classificação não linear ✅ **CONCLUÍDA**
+- [x] **Etapa 2** - Séries temporais LSTM ✅ **CONCLUÍDA**  
+- [x] **Validação estatística** ✅ **500 simulações (Etapa 1)**
+- [x] **Organização do código** ✅ **Estruturada em pastas**
+- [x] **Documentação completa** ✅ **README atualizado**
 
-**Para executar:** `python app.py` (dentro do ambiente virtual)
+---
+
+## 🎓 **EXECUÇÃO RÁPIDA**
+
+**Para executar todo o projeto:**
+
+```powershell
+# Ativar ambiente virtual
+.\venv\Scripts\Activate.ps1
+
+# Executar Etapa 1 (Classificação)
+cd etapa1_classificacao
+python app.py
+cd ..
+
+# Executar Etapa 2 (Séries Temporais)  
+cd etapa2_series_temporais
+python lstm_furnas.py
+cd ..
+```
+
+**Tempo estimado:** ~10-15 minutos para execução completa de ambas as etapas
+```
+

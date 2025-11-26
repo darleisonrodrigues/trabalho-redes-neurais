@@ -1,6 +1,40 @@
-# Projeto de Redes Neurais - Classificação Não Linear
+# TRABALHO VIVENCIAL - REDES NEURAIS
+## Classificação Não Linear e Previsão de Séries Temporais
 
-##  Descrição do Projeto
+### 📁 **ESTRUTURA DO PROJETO**
+
+```
+trabalho-redes-neurais/
+├── etapa1_classificacao/           # PRIMEIRA ETAPA - Classificação
+│   ├── app.py                     # Arquivo principal da etapa 1
+│   ├── spiral_d.csv              # Dataset espiral
+│   ├── perceptron_simple.py      # Perceptron Simples
+│   ├── adaline.py                # ADALINE
+│   ├── mlp.py                    # MLP (Multi-Layer Perceptron)
+│   ├── rbf.py                    # RBF (Radial Basis Function)
+│   ├── utils.py                  # Funções auxiliares
+│   ├── extreme_analysis.py       # Análise de casos extremos
+│   └── results/                  # Resultados da etapa 1
+│       ├── confusion_matrices/   # Matrizes de confusão (42 arquivos)
+│       ├── plots/               # Gráficos e visualizações (3 arquivos)
+│       └── stats/               # Estatísticas em Excel/JSON (6 arquivos)
+│
+├── etapa2_series_temporais/       # SEGUNDA ETAPA - Séries Temporais
+│   ├── lstm_furnas.py            # Arquivo principal da etapa 2
+│   ├── furnas.csv                # Dataset vazão Furnas (60 anos)
+│   ├── plots/                    # Visualizações da etapa 2
+│   ├── models/                   # Modelos LSTM salvos
+│   └── results/                  # Resultados da etapa 2
+│
+├── venv/                         # Ambiente virtual Python 3.11
+├── requirements.txt              # Dependências do projeto
+├── .gitignore                    # Arquivos ignorados pelo git
+└── README.md                     # Este arquivo
+```
+
+## 🎯 **ETAPA 1: CLASSIFICAÇÃO NÃO LINEAR**
+
+### **Descrição do Projeto**
 
 Este projeto implementa e analisa diferentes tipos de redes neurais para classificação não linear bidimensional usando o dataset `spiral_d.csv`. O projeto é parte da primeira etapa de um trabalho acadêmico sobre Machine Learning e Redes Neurais.
 
